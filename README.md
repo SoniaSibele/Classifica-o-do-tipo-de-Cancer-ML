@@ -1,2 +1,2 @@
-# Classifica-o-do-tipo-de-Cancer-ML
-Algoritmos de Machine Larning para Classificar o tipo de Cancer 
+Classificão do tipo de Cancer usando algoritmos de classificação Machine Learning 
+
