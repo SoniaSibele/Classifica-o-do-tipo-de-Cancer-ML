@@ -7,38 +7,36 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn import metrics # analisa a acurácia dos modelos
+from sklearn import metrics 
 
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt # Visualização de dados
+import matplotlib.pyplot as plt 
 import seaborn as sns
-import warnings # Ocultar Warnings indesejados
+import warnings 
 warnings.filterwarnings('ignore')
 
-# importar a base de dados
 from sklearn.datasets import load_breast_cancer
 dados=load_breast_cancer()
 
-print(dados.DESCR) 
-# Tranformar a base de dados em um DataFrame
+#print(dados.DESCR) 
+
 cancer=pd.DataFrame(data=dados.data, columns=dados.feature_names) 
 
-cancer['Class']=dados.target # Adicionar a Target
-x = cancer.head(4)
-print(x)
-y = cancer.shape #dimensões do dataframe
-print(y)
+cancer['Class']=dados.target 
+print(cancer.head(4))
+print(cancer.shape)
+
 dist = cancer['Class'].value_counts() # 1- Benigno 0 = Máligno
 print (dist)
-# visualizar os dados num grafico
+
 colors=['#35b2de','#ffcb5a']
 labels=cancer['Class'].value_counts().index
 plt.pie(cancer['Class'].value_counts(),autopct='%1.1f%%',colors=colors) # ocorrências de cada classe em porcentagem
 plt.legend(labels,bbox_to_anchor=(1.25,1),) 
 plt.title('Porcentagem: Benignos x Malignos ')
 plt.show()
-#valores nulos
+
 nul = cancer.isnull().sum() 
 #print(nul)
 from sklearn.model_selection import train_test_split
@@ -47,7 +45,6 @@ from sklearn.model_selection import train_test_split
 X= cancer.iloc[:,0:-1]
 Y=cancer.iloc[:,-1] 
 
-#dados de treino e test
 x_train,x_test,y_train,y_test=train_test_split(X,Y,test_size=0.30,random_state=42) 
 
 print('X treino',x_train.shape)
@@ -57,12 +54,12 @@ print('Y test',y_test.shape)
 
 #Possíveis modelos
 
-#model = LogisticRegression() # Criar o modelo
+model = LogisticRegression() # Criar o modelo
 #model = SVC()
 #model = GaussianNB()
 #model = DecisionTreeClassifier()
 #model = RandomForestClassifier(n_estimators=100)
-model = knn=KNeighborsClassifier(n_neighbors=1) 
+#model = knn=KNeighborsClassifier(n_neighbors=1) 
 
 model.fit(x_train,y_train) # Treinar o modelo
 y_pred= model.predict(x_test) # predizer
