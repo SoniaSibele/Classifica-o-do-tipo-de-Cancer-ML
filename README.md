@@ -1,5 +1,4 @@
-Classificão do tipo de Cancer usando algoritmos de Machine Learning 
-Foram testados na mesma base de dados algoritmos de classificação como:
+Cancer Type Classification Using Machine Learning Algorithms Classification algorithms such as:
 - LogisticRegression
 - SVM
 - GaussianNB
